@@ -42,41 +42,41 @@ describe("scale data", () => {
 
 describe("spelling", () => {
   it("uses each letter once in seven-note scales", () => {
-    expect(names("major", 2)).toBe("D E F♯ G A B C♯");
-    expect(names("major", 5)).toBe("F G A B♭ C D E");
-    expect(names("harmonic-minor", 3)).toBe("E♭ F G♭ A♭ B♭ C♭ D");
+    expect(names("major", 2)).toBe("Re Mi Fa♯ Sol La Si Do♯");
+    expect(names("major", 5)).toBe("Fa Sol La Si♭ Do Re Mi");
+    expect(names("harmonic-minor", 3)).toBe("Mi♭ Fa Sol♭ La♭ Si♭ Do♭ Re");
   });
 
   it("picks the black-key root name with fewer accidentals", () => {
-    expect(names("major", 1)).toBe("D♭ E♭ F G♭ A♭ B♭ C");
-    expect(names("natural-minor", 1)).toBe("C♯ D♯ E F♯ G♯ A B");
-    expect(names("locrian", 1)).toBe("C♯ D E F♯ G A B");
+    expect(names("major", 1)).toBe("Re♭ Mi♭ Fa Sol♭ La♭ Si♭ Do");
+    expect(names("natural-minor", 1)).toBe("Do♯ Re♯ Mi Fa♯ Sol♯ La Si");
+    expect(names("locrian", 1)).toBe("Do♯ Re Mi Fa♯ Sol La Si");
   });
 
   it("respects an explicit flat or sharp preference for the root", () => {
-    expect(names("major", 6, "sharp")).toBe("F♯ G♯ A♯ B C♯ D♯ E♯");
-    expect(names("major", 6, "flat")).toBe("G♭ A♭ B♭ C♭ D♭ E♭ F");
+    expect(names("major", 6, "sharp")).toBe("Fa♯ Sol♯ La♯ Si Do♯ Re♯ Mi♯");
+    expect(names("major", 6, "flat")).toBe("Sol♭ La♭ Si♭ Do♭ Re♭ Mi♭ Fa");
   });
 
   it("spells non-heptatonic scales by degree", () => {
-    expect(names("minor-blues", 0)).toBe("C E♭ F G♭ G B♭");
-    expect(names("major-blues", 0)).toBe("C D E♭ E G A");
-    expect(names("whole-tone", 0)).toBe("C D E F♯ G♯ B♭");
-    expect(names("altered", 0)).toBe("C D♭ D♯ E F♯ A♭ B♭");
-    expect(names("ultralocrian", 11)).toBe("B C D E♭ F G A♭");
+    expect(names("minor-blues", 0)).toBe("Do Mi♭ Fa Sol♭ Sol Si♭");
+    expect(names("major-blues", 0)).toBe("Do Re Mi♭ Mi Sol La");
+    expect(names("whole-tone", 0)).toBe("Do Re Mi Fa♯ Sol♯ Si♭");
+    expect(names("altered", 0)).toBe("Do Re♭ Re♯ Mi Fa♯ La♭ Si♭");
+    expect(names("ultralocrian", 11)).toBe("Si Do Re Mi♭ Fa Sol La♭");
   });
 
   it("uses the preference for chromatic", () => {
-    expect(names("chromatic", 0, "sharp")).toBe("C C♯ D D♯ E F F♯ G G♯ A A♯ B");
-    expect(names("chromatic", 0, "flat")).toBe("C D♭ D E♭ E F G♭ G A♭ A B♭ B");
+    expect(names("chromatic", 0, "sharp")).toBe("Do Do♯ Re Re♯ Mi Fa Fa♯ Sol Sol♯ La La♯ Si");
+    expect(names("chromatic", 0, "flat")).toBe("Do Re♭ Re Mi♭ Mi Fa Sol♭ Sol La♭ La Si♭ Si");
   });
 });
 
 describe("parentScale", () => {
   it("names the parent of a mode", () => {
-    expect(parentScale(spellScale(scale("dorian"), 2, "auto"))?.label).toBe("C Major");
-    expect(parentScale(spellScale(scale("locrian"), 11, "auto"))?.label).toBe("C Major");
-    expect(parentScale(spellScale(scale("altered"), 7, "auto"))?.label).toBe("A♭ Melodic Minor");
+    expect(parentScale(spellScale(scale("dorian"), 2, "auto"))?.label).toBe("Sol Major");
+    expect(parentScale(spellScale(scale("locrian"), 11, "auto"))?.label).toBe("Sol Major");
+    expect(parentScale(spellScale(scale("altered"), 7, "auto"))?.label).toBe("La♭ Melodic Minor");
     expect(parentScale(spellScale(scale("phrygian-dominant"), 4, "auto"))?.label).toBe("A Harmonic Minor");
   });
 
@@ -87,8 +87,8 @@ describe("parentScale", () => {
 
 describe("note slugs", () => {
   it("parses root names from the URL", () => {
-    expect(pitchOf(parseNoteSlug("c-sharp")!)).toBe(1);
-    expect(pitchOf(parseNoteSlug("B-flat")!)).toBe(10);
+    expect(pitchOf(parseNoteSlug("Do-sharp")!)).toBe(1);
+    expect(pitchOf(parseNoteSlug("Si-flat")!)).toBe(10);
     expect(parseNoteSlug("h")).toBeNull();
   });
 });

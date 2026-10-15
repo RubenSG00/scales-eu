@@ -1,4 +1,4 @@
-export const LETTERS = ["C", "D", "E", "F", "G", "A", "B"] as const;
+export const LETTERS = ["Do", "Re", "Mi", "Fa", "Sol", "La", "Si"] as const;
 const NATURAL_PITCHES = [0, 2, 4, 5, 7, 9, 11];
 
 const ACCIDENTAL_SYMBOLS: Record<number, string> = {
