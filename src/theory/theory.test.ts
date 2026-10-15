@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatNote, parseNoteSlug, pitchOf } from "./notes";
+import { formatNote } from "./notes";
 import { SCALES, getScale, parentScale, spellScale } from "./scales";
 
 const scale = (id: string) => {
@@ -75,13 +75,12 @@ describe("spelling", () => {
 describe("parentScale", () => {
   it("names the parent of a mode", () => {
     expect(parentScale(spellScale(scale("dorian"), 2, "auto"))?.label).toBe("Do Major");
-    expect(parentScale(spellScale(scale("locrian"), 11, "auto"))?.label).toBe("Sol Major");
+    expect(parentScale(spellScale(scale("locrian"), 11, "auto"))?.label).toBe("Do Major");
     expect(parentScale(spellScale(scale("altered"), 7, "auto"))?.label).toBe("La♭ Melodic Minor");
-    expect(parentScale(spellScale(scale("phrygian-dominant"), 4, "auto"))?.label).toBe("A Harmonic Minor");
+    expect(parentScale(spellScale(scale("phrygian-dominant"), 4, "auto"))?.label).toBe("La Harmonic Minor");
   });
 
   it("returns nothing for scales that aren't modes", () => {
     expect(parentScale(spellScale(scale("whole-tone"), 0, "auto"))).toBeNull();
   });
 });
-
