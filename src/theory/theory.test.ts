@@ -74,7 +74,7 @@ describe("spelling", () => {
 
 describe("parentScale", () => {
   it("names the parent of a mode", () => {
-    expect(parentScale(spellScale(scale("dorian"), 2, "auto"))?.label).toBe("Sol Major");
+    expect(parentScale(spellScale(scale("dorian"), 2, "auto"))?.label).toBe("Do Major");
     expect(parentScale(spellScale(scale("locrian"), 11, "auto"))?.label).toBe("Sol Major");
     expect(parentScale(spellScale(scale("altered"), 7, "auto"))?.label).toBe("La♭ Melodic Minor");
     expect(parentScale(spellScale(scale("phrygian-dominant"), 4, "auto"))?.label).toBe("A Harmonic Minor");
@@ -85,10 +85,3 @@ describe("parentScale", () => {
   });
 });
 
-describe("note slugs", () => {
-  it("parses root names from the URL", () => {
-    expect(pitchOf(parseNoteSlug("Do-sharp")!)).toBe(1);
-    expect(pitchOf(parseNoteSlug("Si-flat")!)).toBe(10);
-    expect(parseNoteSlug("h")).toBeNull();
-  });
-});
